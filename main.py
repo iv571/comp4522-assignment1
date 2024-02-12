@@ -6,9 +6,11 @@
 #test comment
 
 def main():
+  
     number_of_transactions = len(transactions)
     must_recover = False
     data_base = read_file('Employees_DB_ADV.csv')
+    DB_Log = [] #initialize database log to track transactions
     failure = is_there_a_failure()
     failing_transaction_index = None
     while not failure:
@@ -25,8 +27,7 @@ def main():
                 No. {failing_transaction_index}.')
                 break
             else:
-                print(f'Transaction No. {index+1} has been commited! 
-                Changes are permanent.')
+                print(f"\nTransaction No. {index+1} has been commited! Changes are permanent.")
                 
     if must_recover:
         #Call your recovery script
@@ -37,12 +38,11 @@ def main():
         print("All transaction ended up well.")
         print("Updates to the database were committed!\n")
 
-    print('The data entries AFTER updates -and RECOVERY, if necessary-
-    are presented below:')
+    print('The data entries AFTER updates -and RECOVERY, if necessary-are presented below:')
     for item in data_base:
         print(item)
 
-  def is_there_a_failure()->bool:
+def is_there_a_failure()->bool:
     '''
     Simulates randomly a failure, returning True or False, accordingly
     '''
@@ -54,7 +54,7 @@ def main():
     return result
 
 
-  def recovery_script(log:list):  #<--- Your CODE
+def recovery_script(log:list):  #<--- Your CODE
     '''
     Restore the database to stable and sound condition, by processing
     the DB log.
