@@ -3,6 +3,7 @@
 #A simulation of a random failure is executed:
 #it could return failure or success
 #If a failure did occur, it calls the program to perform roll-back
+#test comment
 
 def main():
     number_of_transactions = len(transactions)
