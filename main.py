@@ -40,21 +40,22 @@ def search_transactions(transactions, DB_Log):
         if not matching_row.empty:
 
 
-            possibilities = ['First_name'], ['Last_name'], ['Salary'], ['Department'], ['Civil_Status']
+
+            possibilities = ['First_name'], ['Last_name'], ['Salary'], ['Department'], ['Civil_status']
 
             #DB_Log[DB_Log.index == transaction_id-1] = matching_row
 
             matching_rows.append(matching_row)
+
+    return matching_rows
 
     #         for possible in possibilities:
 
     #             if transaction[1] == possible:
 
     #                 # DB_Log[] = matching_row_index
-
-   
-
-    return matching_rows
+    # print(matching_rows[0])
+    # print(df._get_value(0, "Department"))
 
 
 # def main():
@@ -89,18 +90,38 @@ def main():
     df = pd.read_csv("Employees_DB_ADV.csv")
     # List of transactions
     transactions = [['1', 'Department', 'Music'],
-                    ['5', 'Civil_Status', 'Divorced'],
+                    ['5', 'Civil_status', 'Divorced'],
                     ['15', 'Salary', 200000]]  # Changed '200000' to 200000 (int)
     DB_Log = [] #initialize database log to track transactions
-    print("Initial DB_Log:")
-    matching_rows = search_transactions(transactions, DB_Log)
+ 
+    matching_rows = search_transactions(transactions, df)
     # Print matching rows
 
-    print("\nMatching Rows:")
+    print("\nMatching Rows:") 
 
     for row in matching_rows:
 
         print(row)
+
+    print(matching_rows[0])
+    print(df._get_value(0, "Department"))
+    
+    df.at[0, transactions[0][1]]  =  transactions[0][2]
+    df.at[1, transactions[1][1]]  =  transactions[1][2]
+    df.at[2, transactions[2][1]]  =  transactions[2][2]
+    
+    print(df.at[0, 'Department'])
+    print(df.at[1, 'Civil_status'])
+    print(df.at[2, 'Salary'])
+    print(type(transactions[2][2]))
+   
+    print(df.iloc[-1])
+
+    print(df.head(16))
+    
+
+    print(df.at[2, 'Salary'])
+
 
     number_of_transactions = len(transactions)
 
