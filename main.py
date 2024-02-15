@@ -17,7 +17,7 @@ def main():
         # Process transaction
         for index in range(number_of_transactions):
             print(f"\nProcessing transaction No. {index+1}.")  
-            #<--- Your CODE goes here (to process transaction at hand)
+            #<--- Your CODE goes here (to process transaction at hand) Aldo
             print("UPDATES have not been committed yet...\n")
             failure = is_there_a_failure()
             if failure:
@@ -30,7 +30,7 @@ def main():
                 print(f"\nTransaction No. {index+1} has been commited! Changes are permanent.")
                 
     if must_recover:
-        #Call your recovery script
+        #Call your recovery script Iyan
         recovery_script(DB_Log) 
         ### Call the recovery function to restore DB to sound state
     else:
@@ -44,7 +44,7 @@ def main():
 
 def is_there_a_failure()->bool:
     '''
-    Simulates randomly a failure, returning True or False, accordingly
+    Simulates randomly a failure, returning True or False, accordingly Aldo
     '''
     value = random.randint(0,1)
     if value == 1:
@@ -56,17 +56,21 @@ def is_there_a_failure()->bool:
 
 def recovery_script(log:list):  #<--- Your CODE
     '''
-    Restore the database to stable and sound condition, by processing
+    Restore the database to stable and sound condition, by processing Iyan
     the DB log.
     '''
     print("Calling your recovery script with DB_Log as an argument.")
     print("Recovery in process ...\n")
-    pass
 
+    for entry in log:
+        print(entry)
+    
 def transaction_processing(): #<-- Your CODE
     '''
-    1. Process transaction in the transaction queue.
+    1. Process transaction in the transaction queue. Aldo
     2. Updates DB_Log accordingly
     3. This function does NOT commit the updates, just execute them
     '''
+
+   
     pass
