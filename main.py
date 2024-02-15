@@ -91,7 +91,8 @@ def main():
     # List of transactions
     transactions = [['1', 'Department', 'Music'],
                     ['5', 'Civil_status', 'Divorced'],
-                    ['15', 'Salary', 200000]]  # Changed '200000' to 200000 (int)
+                    ['15', 'Salary', 600000],
+                    ['4', 'Last_name', "Joe"]]  # Changed '200000' to 200000 (int)
     DB_Log = [] #initialize database log to track transactions
  
     matching_rows = search_transactions(transactions, df)
@@ -106,9 +107,10 @@ def main():
     print(matching_rows[0])
     print(df._get_value(0, "Department"))
     
-    df.at[0, transactions[0][1]]  =  transactions[0][2]
-    df.at[1, transactions[1][1]]  =  transactions[1][2]
-    df.at[2, transactions[2][1]]  =  transactions[2][2]
+    df.at[int(transactions[0][0])-1, transactions[0][1]]  =  transactions[0][2]
+    df.at[int(transactions[1][0])-1, transactions[1][1]]  =  transactions[1][2]
+    df.at[int(transactions[2][0])-1, transactions[2][1]]  =  transactions[2][2]
+    df.at[int(transactions[3][0])-1, transactions[3][1]]  =  transactions[3][2]
     
     print(df.at[0, 'Department'])
     print(df.at[1, 'Civil_status'])
@@ -118,9 +120,15 @@ def main():
     print(df.iloc[-1])
 
     print(df.head(16))
+
+    df.to_csv("Employees_DB_output.csv", index=False)
     
 
     print(df.at[2, 'Salary'])
+
+
+    from IPython.display import display
+    display(df.head(16))
 
 
     number_of_transactions = len(transactions)
