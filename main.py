@@ -14,19 +14,6 @@ import pandas as pd
 import random
 
 
-# Read the CSV file into a DataFrame
-
-df = pd.read_csv("Employees_DB_ADV.csv")
-
-
-
-# List of transactions
-
-transactions = [['1', 'Department', 'Music'],
-
-                ['5', 'Civil_Status', 'Divorced'],
-
-                ['15', 'Salary', 200000]]  # Changed '200000' to 200000 (int)
 
 
 
@@ -94,10 +81,16 @@ def search_transactions(transactions, DB_Log):
 
 #         print(row)
 
-
+#
 
 
 def main():
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv("Employees_DB_ADV.csv")
+    # List of transactions
+    transactions = [['1', 'Department', 'Music'],
+                    ['5', 'Civil_Status', 'Divorced'],
+                    ['15', 'Salary', 200000]]  # Changed '200000' to 200000 (int)
     DB_Log = [] #initialize database log to track transactions
     print("Initial DB_Log:")
     matching_rows = search_transactions(transactions, DB_Log)
