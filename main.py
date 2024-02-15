@@ -11,7 +11,7 @@
 import sys
 assert sys.version_info >= (3, 5)
 import pandas as pd
-
+import random
 
 
 # Read the CSV file into a DataFrame
@@ -48,7 +48,7 @@ def search_transactions(transactions, DB_Log):
 
         matching_row = DB_Log[DB_Log.index == transaction_id-1]
 
-        mathcing_row_index= DB_Log.index == transaction_id-1
+        matching_row_index= DB_Log.index == transaction_id-1
 
         if not matching_row.empty:
 
@@ -65,53 +65,45 @@ def search_transactions(transactions, DB_Log):
 
     #                 # DB_Log[] = matching_row_index
 
-    # print(DB_Log)
+   
 
     return matching_rows
 
 
-def main():
+# def main():
 
-    # Print initial DataFrame
+#     # Print initial DataFrame
 
-    print("Initial DB_Log:")
+#     print("Initial DB_Log:")
 
-    print(df.head(15))  # Display the first 15 rows
+#     print(df.head(15))  # Display the first 15 rows
 
     
 
-    # Search through transactions
+#     # Search through transactions
 
-    matching_rows = search_transactions(transactions, df)
+#     matching_rows = search_transactions(transactions, df)
 
-    print(DB_Log.index)
+#     print(DB_Log.index)
 
-    # Print matching rows
+#     # Print matching rows
 
-    print("\nMatching Rows:")
+#     print("\nMatching Rows:")
 
-    for row in matching_rows:
+#     for row in matching_rows:
 
-        print(row)
-
-
-
-
-
-
+#         print(row)
 
 
 
 
 def main():
 
-  
+    print("Initial DB_Log:")
 
     number_of_transactions = len(transactions)
 
     must_recover = False
-
-    data_base = pd.read_file('Employees_DB_ADV.csv')
 
     DB_Log = [] #initialize database log to track transactions
 
@@ -169,9 +161,7 @@ def main():
 
     print('The data entries AFTER updates -and RECOVERY, if necessary-are presented below:')
 
-    for item in data_base:
-
-        print(item)
+  
 
 
 
@@ -256,3 +246,6 @@ def transaction_processing(transactions, DB_Log): #<-- Your CODE
             DB_Log.append([transaction_id, column_name, new_value])
 
     pass
+
+
+main()
