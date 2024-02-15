@@ -98,14 +98,21 @@ def search_transactions(transactions, DB_Log):
 
 
 def main():
-
+    DB_Log = [] #initialize database log to track transactions
     print("Initial DB_Log:")
+    matching_rows = search_transactions(transactions, DB_Log)
+    # Print matching rows
+
+    print("\nMatching Rows:")
+
+    for row in matching_rows:
+
+        print(row)
 
     number_of_transactions = len(transactions)
 
     must_recover = False
 
-    DB_Log = [] #initialize database log to track transactions
 
     failure = is_there_a_failure()
 
