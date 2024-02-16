@@ -14,10 +14,13 @@ import pandas as pd
 import random
 
 
+# Read the CSV file into a DataFrame
+df = pd.read_csv("Employees_DB_ADV.csv")
+df2 = pd.read_csv("Employees_DB_ADV.csv")
 
 
 
-def search_transactions(transactions, DB_Log):
+def search_transactions(transactions, df):
 
     '''
 
@@ -33,17 +36,17 @@ def search_transactions(transactions, DB_Log):
 
         transaction_id = int(transaction[0])  # Convert transaction ID to int
 
-        matching_row = DB_Log[DB_Log.index == transaction_id-1]
+        matching_row = df[df.index == transaction_id-1]
 
-        matching_row_index= DB_Log.index == transaction_id-1
+        matching_row_index= df.index == transaction_id-1
 
         if not matching_row.empty:
 
 
 
-            possibilities = ['First_name'], ['Last_name'], ['Salary'], ['Department'], ['Civil_status']
+      
 
-            #DB_Log[DB_Log.index == transaction_id-1] = matching_row
+            #df[df.index == transaction_id-1] = matching_row
 
             matching_rows.append(matching_row)
 
@@ -86,8 +89,7 @@ def search_transactions(transactions, DB_Log):
 
 
 def main():
-    # Read the CSV file into a DataFrame
-    df = pd.read_csv("Employees_DB_ADV.csv")
+    
     # List of transactions
     transactions = [['1', 'Department', 'Music'],
                     ['5', 'Civil_status', 'Divorced'],
@@ -104,24 +106,24 @@ def main():
 
         print(row)
 
-    print(matching_rows[0])
-    print(df._get_value(0, "Department"))
+    # print(matching_rows[0])
+    # print(df._get_value(0, "Department"))
     
-    df.at[int(transactions[0][0])-1, transactions[0][1]]  =  transactions[0][2]
-    df.at[int(transactions[1][0])-1, transactions[1][1]]  =  transactions[1][2]
-    df.at[int(transactions[2][0])-1, transactions[2][1]]  =  transactions[2][2]
-    df.at[int(transactions[3][0])-1, transactions[3][1]]  =  transactions[3][2]
+    # df.at[int(transactions[0][0])-1, transactions[0][1]]  =  transactions[0][2]
+    # df.at[int(transactions[1][0])-1, transactions[1][1]]  =  transactions[1][2]
+    # df.at[int(transactions[2][0])-1, transactions[2][1]]  =  transactions[2][2]
+    # df.at[int(transactions[3][0])-1, transactions[3][1]]  =  transactions[3][2]
     
-    print(df.at[0, 'Department'])
-    print(df.at[1, 'Civil_status'])
-    print(df.at[2, 'Salary'])
-    print(type(transactions[2][2]))
+    # print(df.at[0, 'Department'])
+    # print(df.at[1, 'Civil_status'])
+    # print(df.at[2, 'Salary'])
+    # print(type(transactions[2][2]))
    
-    print(df.iloc[-1])
+    # print(df.iloc[-1])
 
-    print(df.head(16))
+    # print(df.head(16))
 
-    df.to_csv("Employees_DB_output.csv", index=False)
+    # df.to_csv("Employees_DB_output.csv", index=False)
     
 
     print(df.at[2, 'Salary'])
@@ -143,24 +145,32 @@ def main():
     while not failure:
 
         # Process transaction
+        x = 0
 
         for index in range(number_of_transactions):
 
             print(f"\nProcessing transaction No. {index+1}.")  
 
-            #<--- Your CODE goes here (to process transaction at hand)
+            df.at[int(transactions[x][0])-1, transactions[x][1]]  =  transactions[x][2]
+            
+            print(df.at[x, transactions[x][1]])
+
+            print(df.head(16))
 
             print("UPDATES have not been committed yet...\n")
+
+            x+1
 
             failure = is_there_a_failure()
 
             if failure:
 
                 must_recover = True
+                recovery_script(df)
 
                 failing_transaction_index = index + 1
 
-                print('There was a failure whilst processing transaction \  No. {failing_transaction_index}.')
+                print(f'There was a failure whilst processing transaction \  No. {failing_transaction_index}.')
 
                 break
 
@@ -168,7 +178,7 @@ def main():
 
                 print(f"\nTransaction No. {index+1} has been commited! Changes are permanent.")
 
-                
+           
 
     if must_recover:
 
@@ -228,9 +238,17 @@ def recovery_script(log:list):  #<--- Your CODE
 
     '''
 
+    
+
     print("Calling your recovery script with DB_Log as an argument.")
 
     print("Recovery in process ...\n")
+
+    print("entered recovery")
+
+    print(df2.head(16))
+
+    df.to_csv("Employees_DB_output.csv", index=False)
 
     pass
 
