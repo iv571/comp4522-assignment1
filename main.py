@@ -1,12 +1,14 @@
-#Reads the .csv file
+"""
+COMP-4522 Assignment 1
+Authors: Aldo Ortiz, Iyan Velji
+Date: February 16, 2024
 
-#Navigates through the list of transactions
+1. Reads CSV file
+2. Navigates through the list of transactions
+3. A simulation of a random failure is executed
+4. If a failure did occur, it calls the program to perform roll-back
 
-#A simulation of a random failure is executed:
-
-#it could return failure or success
-
-#If a failure did occur, it calls the program to perform roll-back
+"""
 
 import sys
 assert sys.version_info >= (3, 5)
@@ -14,7 +16,7 @@ import pandas as pd
 import random
 
 
-# Read the CSV file into a DataFrame
+# Read the CSV file into a DataFrame and backup DataFrame
 df = pd.read_csv("Employees_DB_ADV.csv")
 df2 = pd.read_csv("Employees_DB_ADV.csv")
 
