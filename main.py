@@ -207,17 +207,17 @@ def recovery_script(log:list):  #<--- Your CODE
 
     '''
 
-    
-
     print("Calling your recovery script with DB_Log as an argument.")
 
     print("Recovery in process ...\n")
 
     print("entered recovery")
 
+    df2.to_csv("Employees_DB_output.csv", index=False)
+
     print(df2.head(16))
 
-    df.to_csv("Employees_DB_output.csv", index=False)
+    print("Changes have been rolled back to the last committed transaction")
 
     pass
 
