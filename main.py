@@ -127,7 +127,7 @@ def main():
 
             print("UPDATES have not been committed yet...\n")
 
-            x+1
+            x += 1
 
             failure = is_there_a_failure()
 
@@ -143,7 +143,8 @@ def main():
                 break
 
             else:
-                #commit_changes()
+                #Commit Changes
+                df2 = df.copy()
                 print(f"\nTransaction No. {index+1} has been commited! Changes are permanent.")
 
            
