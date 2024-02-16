@@ -42,50 +42,9 @@ def search_transactions(transactions, df):
 
         if not matching_row.empty:
 
-
-
-      
-
-            #df[df.index == transaction_id-1] = matching_row
-
             matching_rows.append(matching_row)
 
     return matching_rows
-
-    #         for possible in possibilities:
-
-    #             if transaction[1] == possible:
-
-    #                 # DB_Log[] = matching_row_index
-    # print(matching_rows[0])
-    # print(df._get_value(0, "Department"))
-
-
-# def main():
-
-#     # Print initial DataFrame
-
-#     print("Initial DB_Log:")
-
-#     print(df.head(15))  # Display the first 15 rows
-
-    
-
-#     # Search through transactions
-
-#     matching_rows = search_transactions(transactions, df)
-
-#     print(DB_Log.index)
-
-#     # Print matching rows
-
-#     print("\nMatching Rows:")
-
-#     for row in matching_rows:
-
-#         print(row)
-
-#
 
 
 def main():
@@ -98,9 +57,7 @@ def main():
     #initialize database log to track transactions
     DB_Log = [] 
     print("Starting transactions ...")
-    
-    from IPython.display import display
-    display(df.head(16))
+
 
     number_of_transactions = len(transactions)
 
@@ -121,8 +78,10 @@ def main():
 
             df.at[int(transactions[x][0])-1, transactions[x][1]]  =  transactions[x][2]
             
-            print(df.at[x, transactions[x][1]])
+            print("Value Changed to:")
+            print(df.at[int(transactions[x][0])-1, transactions[x][1]])
 
+            print("Updated DB:")
             print(df.head(16))
 
             print("UPDATES have not been committed yet...\n")
@@ -170,9 +129,6 @@ def main():
     print('The data entries AFTER updates -and RECOVERY, if necessary-are presented below:')
 
   
-
-
-
 def is_there_a_failure()->bool:
 
     '''
@@ -192,9 +148,6 @@ def is_there_a_failure()->bool:
         result = False
 
     return result
-
-
-
 
 
 def recovery_script(log:list):  #<--- Your CODE
@@ -220,8 +173,6 @@ def recovery_script(log:list):  #<--- Your CODE
     print("Changes have been rolled back to the last committed transaction")
 
     pass
-
-
 
 def transaction_processing(transactions, DB_Log): #<-- Your CODE
 
