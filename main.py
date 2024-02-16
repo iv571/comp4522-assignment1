@@ -21,11 +21,9 @@ df = pd.read_csv("Employees_DB_ADV.csv")
 df2 = pd.read_csv("Employees_DB_ADV.csv")
 
 
-
 def search_transactions(transactions, df):
 
     '''
-
     Search through the first set of values in transactions
 
     and find matching rows in DB_Log.
@@ -96,49 +94,17 @@ def main():
     transactions = [['1', 'Department', 'Music'],
                     ['5', 'Civil_status', 'Divorced'],
                     ['15', 'Salary', 600000],
-                    ['4', 'Last_name', "Joe"]]  # Changed '200000' to 200000 (int)
-    DB_Log = [] #initialize database log to track transactions
- 
-    matching_rows = search_transactions(transactions, df)
-    # Print matching rows
-
-    print("\nMatching Rows:") 
-
-    for row in matching_rows:
-
-        print(row)
-
-    # print(matching_rows[0])
-    # print(df._get_value(0, "Department"))
+                    ['4', 'Last_name', "Joe"]] 
+    #initialize database log to track transactions
+    DB_Log = [] 
+    print("Starting transactions ...")
     
-    # df.at[int(transactions[0][0])-1, transactions[0][1]]  =  transactions[0][2]
-    # df.at[int(transactions[1][0])-1, transactions[1][1]]  =  transactions[1][2]
-    # df.at[int(transactions[2][0])-1, transactions[2][1]]  =  transactions[2][2]
-    # df.at[int(transactions[3][0])-1, transactions[3][1]]  =  transactions[3][2]
-    
-    # print(df.at[0, 'Department'])
-    # print(df.at[1, 'Civil_status'])
-    # print(df.at[2, 'Salary'])
-    # print(type(transactions[2][2]))
-   
-    # print(df.iloc[-1])
-
-    # print(df.head(16))
-
-    # df.to_csv("Employees_DB_output.csv", index=False)
-    
-
-    print(df.at[2, 'Salary'])
-
-
     from IPython.display import display
     display(df.head(16))
-
 
     number_of_transactions = len(transactions)
 
     must_recover = False
-
 
     failure = is_there_a_failure()
 
@@ -177,7 +143,7 @@ def main():
                 break
 
             else:
-
+                #commit_changes()
                 print(f"\nTransaction No. {index+1} has been commited! Changes are permanent.")
 
            
